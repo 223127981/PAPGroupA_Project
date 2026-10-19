@@ -1,3 +1,9 @@
+/*
+ * suppliers.h - Supplier Management module
+ * Municipal Financial Management System (MFMS) - PAP521S Project A, Group 5
+ * Author: Nangolo Drothea (223039985)
+ */
+
 #ifndef SUPPLIERS_H
 #define SUPPLIERS_H
 
