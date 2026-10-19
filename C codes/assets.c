@@ -1,3 +1,13 @@
+/*
+ * assets.c - Asset Management module
+ * Municipal Financial Management System (MFMS) - PAP521S Project A, Group 5
+ * Author: Siyanda B. Ndhlovu (223127981)
+ *
+ * Keeps a register of municipal assets (vehicles, computers, buildings,
+ * equipment, office furniture) and lets the user add, display, search
+ * and summarise them.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

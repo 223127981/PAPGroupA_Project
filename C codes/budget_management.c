@@ -1,3 +1,12 @@
+/*
+ * budget_management.c - Budget Management module
+ * Municipal Financial Management System (MFMS) - PAP521S Project A, Group 5
+ * Author: Andreas Niipare (223118958)
+ *
+ * Stores departmental budgets and expenditure, calculates the remaining
+ * budget and identifies departments that have exceeded their budget.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,6 +15,7 @@
 Department budgets[MAX_DEPTS];
 int deptCount = 0;
 
+/* Shows a prompt, reads one line and removes the Enter key. */
 void readLine(const char *prompt, char *buffer, int size)
 {
     printf("%s", prompt);
@@ -17,11 +27,13 @@ void readLine(const char *prompt, char *buffer, int size)
     buffer[strcspn(buffer, "\n")] = '\0';
 }
 
+/* Returns the remaining budget: allocated minus expenditure. */
 double calculateRemaining(double allocated, double expenditure)
 {
     return allocated - expenditure;
 }
 
+/* Returns "WITHIN BUDGET" or "EXCEEDED BUDGET". */
 const char *getStatus(double allocated, double expenditure)
 {
     if (expenditure <= allocated)
@@ -30,6 +42,7 @@ const char *getStatus(double allocated, double expenditure)
         return "EXCEEDED BUDGET";
 }
 
+/* Keeps asking until a department name is entered (not empty). */
 void readName(const char *prompt, char *name)
 {
     while (1)
@@ -41,6 +54,7 @@ void readName(const char *prompt, char *name)
     }
 }
 
+/* Keeps asking until a valid amount greater than zero is entered. */
 double readAmount(const char *prompt)
 {
     char text[100];
@@ -61,6 +75,7 @@ double readAmount(const char *prompt)
     }
 }
 
+/* Returns the position of the department, or -1 if not found. */
 int findDepartment(const char *name)
 {
     int i;
@@ -74,6 +89,7 @@ int findDepartment(const char *name)
     return -1;
 }
 
+/* Adds a new department and its allocated budget. */
 void addBudget(void)
 {
     char name[NAME_LEN];
@@ -100,6 +116,7 @@ void addBudget(void)
     printf("  Budget saved for %s.\n", name);
 }
 
+/* Adds expenditure to a department and shows what is left. */
 void addExpenditure(void)
 {
     char name[NAME_LEN];
@@ -128,6 +145,7 @@ void addExpenditure(void)
         printf("  WARNING: %s has EXCEEDED its budget!\n", name);
 }
 
+/* Prints one department's budget information. */
 void displayDepartment(Department d)
 {
     printf("\nDepartment: %s\n", d.name);
@@ -139,6 +157,7 @@ void displayDepartment(Department d)
            getStatus(d.allocated, d.expenditure));
 }
 
+/* Prints the budget information of every department. */
 void displayAll(void)
 {
     int i;
@@ -153,6 +172,7 @@ void displayAll(void)
         displayDepartment(budgets[i]);
 }
 
+/* Lists the departments that have spent more than their budget. */
 void displayExceeded(void)
 {
     int i, found = 0;
@@ -174,6 +194,7 @@ void displayExceeded(void)
         printf("  None. All departments are within budget.\n");
 }
 
+/* The Budget Management sub-menu. Loops until the user chooses 0. */
 void budgetMenu(void)
 {
     char choice[10];
@@ -185,7 +206,7 @@ void budgetMenu(void)
         printf("2. Enter expenditure\n");
         printf("3. Display budget information\n");
         printf("4. Show departments over budget\n");
-        printf("0. Exit\n");
+        printf("0. Back to main menu\n");
 
         readLine("Choose: ", choice, sizeof(choice));
 
@@ -198,7 +219,7 @@ void budgetMenu(void)
         else if (strcmp(choice, "4") == 0)
             displayExceeded();
         else if (strcmp(choice, "0") == 0)
-            printf("Goodbye.\n");
+            printf("Returning to main menu...\n");
         else
             printf("  Invalid option.\n");
 

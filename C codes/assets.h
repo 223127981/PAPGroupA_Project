@@ -1,3 +1,11 @@
+/*
+ * assets.h - Asset Management module
+ * Municipal Financial Management System (MFMS) - PAP521S Project A, Group 5
+ * Author: Siyanda B. Ndhlovu (223127981)
+ *
+ * Other files #include this header to use the asset functions.
+ */
+
 #ifndef ASSETS_H
 #define ASSETS_H
 

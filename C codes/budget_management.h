@@ -1,3 +1,9 @@
+/*
+ * budget_management.h - Budget Management module
+ * Municipal Financial Management System (MFMS) - PAP521S Project A, Group 5
+ * Author: Andreas Niipare (223118958)
+ */
+
 #ifndef BUDGET_MANAGEMENT_H
 #define BUDGET_MANAGEMENT_H
 
